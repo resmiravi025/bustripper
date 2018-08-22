@@ -17,7 +17,3 @@ Your assignment for the first hour of the day is;
 
 4. Perform a code review of the current code. Make notes of What works, identify bugs and suggest improvements.
    Prepare a discussion around your findings. There is no need to code corrections here.
-
-5. Still there are complaints, that in situations where network is slow, the output of the bus lines are messy.
-   What can be the explanations of these? Plan (but don't code) what needs to be changed to be more robust against
-   slow networks.
