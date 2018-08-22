@@ -12,8 +12,8 @@ Your assignment for the first hour of the day is;
 2. The previous developer had intended that pressing both "q" and just <enter> at the query prompt should stop the
    program. It turns out only one of them works. Can you fix the other?
 
-3. On some searches ('Fornebu' or 'Oslo'), more than 10 results are printed and the cursor is not positioned correctly.
-   Can you fix this?
+3. On some searches ('Fornebu' or 'Oslo'), more than 10 results are printed and the cursor is not positioned correctly
+   after search completion. Can you fix this (or if time runs short, describe how you would fix it)?
 
 4. Perform a code review of the current code. Make notes of What works, identify bugs and suggest improvements.
    Prepare a discussion around your findings. There is no need to code corrections here.
