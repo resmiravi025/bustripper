@@ -8,10 +8,10 @@ User flow:
     https://reisapi.ruter.no/Place/GetPlaces/Lysaker
 (2190021)
 3. then looks up the coming departures using
-    http://reisapi.ruter.no/StopVisit/GetDepartures/2190021?datetime=2016-11-22T12:10:00
+    https://reisapi.ruter.no/StopVisit/GetDepartures/2190021?datetime=2016-11-22T12:10:00
 and prints
   line where-to of the first 10.
 
-API documentation from http://reisapi.ruter.no/help or labs.ruter.no
+API documentation from https://reisapi.ruter.no/help or labs.ruter.no
 
 Start it with # ./gradlew run -q
