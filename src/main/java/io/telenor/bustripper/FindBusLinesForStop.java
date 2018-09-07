@@ -9,6 +9,7 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.MediaType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * FINDS a busline for stop ID
@@ -16,7 +17,7 @@ import java.util.Date;
  */
 public class FindBusLinesForStop implements Runnable {
 
-    private static final String SEARCH_URL = "http://reisapi.ruter.no/StopVisit/GetDepartures/%s?datetime=%s";
+    private static final String SEARCH_URL = "https://reisapi.ruter.no/StopVisit/GetDepartures/%s?datetime=%s";
 
     private static SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd'T'HH:mm:ss");
 
@@ -24,11 +25,13 @@ public class FindBusLinesForStop implements Runnable {
     private String stopId;
     private TripsCallback listener;
     private boolean last;
+    private CountDownLatch latch;
 
-    public FindBusLinesForStop(String stopId, TripsCallback callback, boolean last) {
+    public FindBusLinesForStop(String stopId, TripsCallback callback, boolean last, CountDownLatch latch) {
         this.stopId = stopId;
         this.listener = callback;
         this.last = last;
+        this.latch = latch;
     }
 
     public void run() {
@@ -45,7 +48,7 @@ public class FindBusLinesForStop implements Runnable {
                 .request(MediaType.APPLICATION_JSON);
 
         final AsyncInvoker asyncInvoker = invocationBuilder.async();
-        asyncInvoker.get(new BusTripsCallBack(target, listener, last));
+        asyncInvoker.get(new BusTripsCallBack(target, listener, last, latch));
 
     }
 

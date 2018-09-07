@@ -3,7 +3,6 @@ package io.telenor.bustripper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,13 +20,12 @@ public class Main {
             @Override
             public synchronized void gotTrips(Set<BusTrip> trips, boolean done) {
                 allTrips.addAll(trips);
-
-                if(done || allTrips.size() >= maxtrips) {
+                if(done) {
                     if (allTrips.isEmpty()) {
                         System.out.println("No trips found!");
                     }
 
-                    trips.stream().sorted(
+                    allTrips.stream().sorted(
                             (e1, e2) -> e1.getExpectedArrivalTime().compareTo(e2.getExpectedArrivalTime())
                     ).limit(maxtrips).forEach(t -> System.out.println(t));
 
@@ -57,11 +55,12 @@ public class Main {
                 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 boolean done = false;
 
+
                 do {
                     System.out.print("> ");
                     try {
-                        String searchterm = in.readLine();
-                        if("q" == searchterm || searchterm.length() == 0) {
+                        String searchterm = in.readLine().replaceAll("[^a-zA-ZøæåØÅ]", "");
+                        if(searchterm.equals("q") || searchterm.length() == 0) {
                             System.exit(0);
                         }
                         System.out.println("Looking up " + searchterm);
@@ -79,9 +78,6 @@ public class Main {
 
             }
         }
-
-
-
 
         public static void main(String[] args) {
             new Thread(new InputGatherer()).start();

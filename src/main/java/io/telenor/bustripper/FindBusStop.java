@@ -2,7 +2,10 @@ package io.telenor.bustripper;
 
 import org.glassfish.jersey.client.ClientConfig;
 
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.AsyncInvoker;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -11,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 public class FindBusStop implements Runnable {
 
 
-    private static final String SEARCH_URL = "http://reisapi.ruter.no/Place/GetPlaces/";
+    private static final String SEARCH_URL = "https://reisapi.ruter.no/Place/GetPlaces/";
 
     private String searchTerm;
 
